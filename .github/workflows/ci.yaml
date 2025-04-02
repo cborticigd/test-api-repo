@@ -34,3 +34,5 @@ jobs:
         with:
           github-token: ${{ secrets.TOKEN }}
           repos-file: REPOSITORIES.md
+          author-email: scala-steward@users.noreply.github.com
+          author-name: Scala Steward
