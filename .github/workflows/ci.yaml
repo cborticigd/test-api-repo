@@ -32,5 +32,5 @@ jobs:
           ls -l
       - uses: scala-steward-org/scala-steward-action@v2.75.0
         with:
-          github-token: ${{ github.token }}
+          github-token: ${{ secrets.TOKEN }}
           repos-file: REPOSITORIES.md
