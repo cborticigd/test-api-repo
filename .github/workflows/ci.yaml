@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
 
 env:
-  GH_TOKEN: ${{ github.token }} # Required to use gh cli
+  GITHUB_TOKEN: ${{ secrets.TOKEN }} # Required to use gh cli
   VERSION: "${{ github.run_number }}-${{ github.run_attempt }}"
 jobs:
 
