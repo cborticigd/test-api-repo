@@ -1,0 +1,36 @@
+name: Scala Steward
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  id-token: write
+  contents: write
+  pull-requests: write
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  GH_TOKEN: ${{ github.token }} # Required to use gh cli
+  VERSION: "${{ github.run_number }}-${{ github.run_attempt }}"
+jobs:
+
+  PostBuild:
+    runs-on: ubuntu-latest
+    outputs:
+      VERSION: ${{ env.VERSION }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: check files
+        run: |
+          ls -l
+      - uses: scala-steward-org/scala-steward-action@v2.75.0
+        with:
+          github-token: ${{ github.token }}
+          repos-file: REPOSITORIES.md
