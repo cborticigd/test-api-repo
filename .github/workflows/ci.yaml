@@ -26,10 +26,12 @@ jobs:
     outputs:
       VERSION: ${{ env.VERSION }}
     steps:
-      - uses: actions/checkout@v4
+
       - name: check files
         run: |
-          ls -l
+          curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          "https://api.github.com/search/repositories?q=topic:scala-steward+org:cborticigd" | jq -r '.items[].full_name | "- \(.)"' > REPOSITORIES.md
+      
       - uses: scala-steward-org/scala-steward-action@v2.75.0
         with:
           github-token: ${{ secrets.TOKEN }}
