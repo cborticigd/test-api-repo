@@ -29,10 +29,9 @@ jobs:
 
       - name: check files
         run: |
-          curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          "https://api.github.com/search/repositories?q=topic:scala-steward+org:cborticigd" | jq -r '.items[].full_name | "- \(.)"' > REPOSITORIES.md
-          ls -l
-          cat REPOSITORIES.md
+          curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/search/repositories?q=topic:scala-steward+org:cborticigd" | jq -r '.items[].full_name | "- \(.)"'
+          # ls -l
+          # cat REPOSITORIES.md
       
       - uses: scala-steward-org/scala-steward-action@v2.75.0
         with:
