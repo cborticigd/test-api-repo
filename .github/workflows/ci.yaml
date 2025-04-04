@@ -26,7 +26,7 @@ jobs:
     outputs:
       VERSION: ${{ env.VERSION }}
     steps:
-      - uses: amannn/action-semantic-pull-request@v5
+      - uses: amannn/action-semantic-pull-request@0723387faaf9b38adef4775cd42cfd5155ed6017
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         
@@ -42,3 +42,4 @@ jobs:
           repos-file: REPOSITORIES.md
           author-email: scala-steward@users.noreply.github.com
           author-name: Scala Steward
+
