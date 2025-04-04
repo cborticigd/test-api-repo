@@ -26,13 +26,15 @@ jobs:
     outputs:
       VERSION: ${{ env.VERSION }}
     steps:
+      - uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        
 
       - name: check files
         run: |
           curl -H "Authorization: token ${{ secrets.TOKEN }}" \
           "https://api.github.com/search/repositories?q=topic:scala-steward+org:cborticigd" | jq -r '.items[].full_name | "- \(.)"' > REPOSITORIES.md
-          # ls -l
-          # cat REPOSITORIES.md
       
       - uses: scala-steward-org/scala-steward-action@v2.75.0
         with:
